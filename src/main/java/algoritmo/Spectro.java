@@ -77,31 +77,29 @@ public class Spectro {
                     break;
             }
         }
-        System.out.println("Valores em 0 : " + clusters[0] + "\nValores em 1: " + clusters[1] + "\nValores em 2: " + clusters[2] + "\nValores em 3: "  + clusters[3]);
+        System.out.println("Valores no grupo 0: " + clusters[0] + "\nValores no grupo 1: " + clusters[1] + "\nValores no grupo 2: " + clusters[2] + "\nValores no grupo 3: "  + clusters[3]);
     }
 
     private void setValoresCentroides(double[][] centroides) {
+        centroides[0][0] = 0.8620237570241243;
+        centroides[0][1] = 0.2226356379637249;
+        centroides[0][2] = 0.4415966497793408;
+        centroides[0][3] = 0.11108921612002348;
 
-        centroides[0][0] = -1.5F;
-        centroides[0][1] = -1.5F;
-        centroides[0][2] = -1.5F;
-        centroides[0][3] = -1.5F;
+        centroides[1][0] = -0.2077484041997292;
+        centroides[1][1] = 0.04733246314486677;
+        centroides[1][2] = 0.9612319695173597;
+        centroides[1][3] = -0.17502382484360068;
 
-        centroides[1][0] = -0.5F;
-        centroides[1][1] = -0.5F;
-        centroides[1][2] = -0.5F;
-        centroides[1][3] = -0.5F;
+        centroides[2][0] = -0.285953056403149;
+        centroides[2][1] = -0.3505921575617276;
+        centroides[2][2] = 0.8848879031347996;
+        centroides[2][3] = 0.11085750978444221;
 
-        centroides[2][0] = 0.5F;
-        centroides[2][1] = 0.5F;
-        centroides[2][2] = 0.5F;
-        centroides[2][3] = 0.5F;
-
-        centroides[3][0] = 1.5F;
-        centroides[3][1] = 1.5F;
-        centroides[3][2] = 1.5F;
-        centroides[3][3] = 1.5F;
-
+        centroides[3][0] = 0.27557410928867676;
+        centroides[3][1] = -0.4586600684802537;
+        centroides[3][2] = 0.016018025469504024;
+        centroides[3][3] = -0.8446497941345275;
     }
 
     private double getSomaColuna(double[][] matrizAutoVetor, int j, int numLinhas) {

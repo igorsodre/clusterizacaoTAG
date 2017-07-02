@@ -12,7 +12,7 @@ public class Grafo {
 
 
     public Grafo() throws IOException {
-        this.sigma = (double) 50;
+        this.sigma = 10f;
         construirMatriz();
     }
 
@@ -22,18 +22,18 @@ public class Grafo {
 
 
         inicializaMatriz(numeroLinhas);
-        double[][] data = new double[numeroLinhas][6];
+        double[][] data = new double[numeroLinhas][4];
 
 
         for (int i = 0; i < numeroLinhas; i++) {
             String linha = br.readLine();
             String[] dados = linha.split(",");
-            data[i][0] = trataBuyingData(dados[0]);
-            data[i][1] = trataMaintData(dados[1]);
-            data[i][2] = trataDoorsData(dados[2]);
-            data[i][3] = trataPersonsData(dados[3]);
-            data[i][4] = trataLugData(dados[4]);
-            data[i][5] = trataSafetyData(dados[5]);
+            //data[i][0] = preencheDados(dados[0]);
+            //data[i][1] = preencheDados(dados[1]);
+            data[i][0] = trataDoorsData(dados[2]);
+            data[i][1] = trataPersonsData(dados[3]);
+            data[i][2] = trataLugData(dados[4]);
+            data[i][3] = trataSafetyData(dados[5]);
             this.resultadoOriginal[i] = trataResultado(dados[6]);
 
         }
@@ -79,10 +79,10 @@ public class Grafo {
         double x1 = data[i][1] - data[j][1];
         double x2 = data[i][2] - data[j][2];
         double x3 = data[i][3] - data[j][3];
-        double x4 = data[i][4] - data[j][4];
-        double x5 = data[i][5] - data[j][5];
+        //double x4 = data[i][4] - data[j][4];
+        //double x5 = data[i][5] - data[j][5];
         return Math.sqrt(Math.pow(x0, 2) + Math.pow(x1, 2) + Math.pow(x2, 2)
-                + Math.pow(x3, 2) + Math.pow(x4, 2) + Math.pow(x5, 2));
+                + Math.pow(x3, 2));
     }
 
 
@@ -90,9 +90,9 @@ public class Grafo {
         int resultado = 0;
 
         if (string.equals("unacc")) resultado = 0;
-        if (string.equals("acc")) resultado = 1;
-        if (string.equals("good")) resultado = 2;
-        if (string.equals("vgood")) resultado = 3;
+        if (string.equals("acc")) resultado = 3;
+        if (string.equals("good")) resultado = 5;
+        if (string.equals("vgood")) resultado = 10;
 
         return resultado;
     }
@@ -101,9 +101,9 @@ public class Grafo {
     private double trataSafetyData(String string) {
         double data = 0;
 
-        if (string.equals("low")) data = 0;
-        if (string.equals("med")) data = 1;
-        if (string.equals("high")) data = 2;
+        if (string.equals("low")) data = 1;
+        if (string.equals("med")) data = 5;
+        if (string.equals("high")) data = 9;
 
         return data;
     }
@@ -112,9 +112,9 @@ public class Grafo {
     private double trataLugData(String string) {
         double data = 0;
 
-        if (string.equals("small")) data = 0;
-        if (string.equals("med")) data = 1;
-        if (string.equals("big")) data = 2;
+        if (string.equals("small")) data = 1;
+        if (string.equals("med")) data = 5;
+        if (string.equals("big")) data = 9;
 
 
         return data;
@@ -124,9 +124,9 @@ public class Grafo {
     private double trataPersonsData(String string) {
         double data = 0;
 
-        if (string.equals("2")) data = 0;
-        if (string.equals("4")) data = 1;
-        if (string.equals("more")) data = 2;
+        if (string.equals("2")) data = 2;
+        if (string.equals("4")) data = 4;
+        if (string.equals("more")) data = 7;
 
         return data;
     }
@@ -135,39 +135,25 @@ public class Grafo {
     private double trataDoorsData(String string) {
         double data = 0;
 
-        if (string.equals("2")) data = 0;
-        if (string.equals("3")) data = 1;
-        if (string.equals("4")) data = 2;
-        if (string.equals("5more")) data = 3;
+        if (string.equals("2")) data = 2;
+        if (string.equals("3")) data = 4;
+        if (string.equals("4")) data = 10;
+        if (string.equals("5more")) data = 7;
 
         return data;
     }
 
 
-    private double trataMaintData(String string) {
+    private double preencheDados(String string) {
         double data = 0;
 
-        if (string.equals("vhigh")) data = 0;
-        if (string.equals("high")) data = 1;
-        if (string.equals("med")) data = 2;
-        if (string.equals("low")) data = 3;
+        if (string.equals("vhigh")) data = 300;
+        if (string.equals("high")) data = 200;
+        if (string.equals("med")) data = 100;
+        if (string.equals("low")) data = 1;
 
         return data;
     }
-
-
-    private double trataBuyingData(String string) {
-        double data = 0;
-
-        if (string.equals("vhigh")) data = 0;
-        if (string.equals("high")) data = 1;
-        if (string.equals("med")) data = 2;
-        if (string.equals("low")) data = 3;
-
-        return data;
-
-    }
-
 
     private void inicializaMatriz(int numeroLinhas) {
         matrizAfinidade = new double[numeroLinhas][numeroLinhas];
